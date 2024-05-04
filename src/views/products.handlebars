@@ -1,0 +1,89 @@
+<h1>Lista Productos</h1>
+<button id="goToCartButton">Ir al Carrito</button>
+
+<table>
+    <tr>
+        <th>Id:</th>
+        <th>Título:</th>
+        <th>Descripción:</th>
+        <th>Código:</th>
+        <th>Precio:</th>
+        <th>Estado:</th>
+        <th>Stock:</th>
+        <th>Categoría:</th>
+        <th>Imágenes:</th>
+    </tr>
+
+    {{#each products}}
+        <tr>
+            <td>{{_id}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{code}}</td>
+            <td>${{price}}</td>
+            <td>{{status}}</td>
+            <td>{{stock}}</td>
+            <td>{{category}}</td>
+            <td>{{thumbnail}}</td>
+            <td>
+                <button class="addToCartButton" data-productid="{{_id}}">Agregar al Carrito</button> 
+            </td>
+        </tr>
+    {{/each}}
+</table>
+
+<div>
+    {{#if hasPrevPage}}
+        <a href={{this.prevLink}}><< Anterior</a>
+    {{/if}}
+    &nbsp; {{this.page}} &nbsp;
+    {{#if hasNextPage}}
+        <a href={{this.nextLink}}>Siguiente >></a>
+    {{/if}}
+</div>
+
+<script>
+const cartId = "{{user.cart}}";
+// Capturar el evento de clic del botón "Añadir al carrito"
+document.querySelectorAll('.addToCartButton').forEach(button => {
+    button.addEventListener('click', () => {
+        // Obtener el ID del producto asociado al botón
+        const productId = button.dataset.productid;
+
+        // Realizar la solicitud POST al endpoint addToCart con el ID del carrito y del producto
+        fetch(`/carts/${cartId}/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // La solicitud se completó correctamente
+                alert("Producto agregado al carrito exitosamente");
+            } else {
+                // La solicitud no se completó correctamente
+                alert("Error al agregar el producto al carrito");
+            }
+        })
+        .catch(error => {
+            // Error en la solicitud
+            console.error(
+                "Error al agregar el producto al carrito:", error
+            )
+            alert("Error interno del servidor");
+        });
+    });
+});
+</script>
+<script>
+    // Capturar el evento de clic del botón "Ir al carrito"
+    document.getElementById('goToCartButton').addEventListener('click', () => {
+        // Obtener el ID del carrito
+        const cartId = "{{user.cart}}"; 
+        
+        // Redirigir al usuario al carrito utilizando el ID obtenido
+        window.location.href = `/carts/${cartId}`;
+    });
+</script>
+

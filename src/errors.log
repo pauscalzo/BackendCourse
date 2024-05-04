@@ -1,0 +1,5 @@
+
+{"level":"fatal","message":"Usuario existente!, POST en /signup - 4/5/2024"}
+{"level":"error","message":"Fallo en el registro!, GET en /failregister - 4/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
