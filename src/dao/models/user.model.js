@@ -2,30 +2,13 @@ import mongoose from "mongoose";
 import { CartManagerMongo } from "../services/managers/CartManagerMongo.js";
 
 const userSchema = new mongoose.Schema({
-    first_name: {
-        type: String,
-    },
-    last_name: {
-        type: String,
-    },
-    email: {
-        type: String,
-        unique: true
-    },
-    age: {
-        type: Number,
-    },
-    password: {
-        type: String,
-    },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cart'
-    },
-    role: {
-        type: String,
-        default: "user"
-    }
+    first_name: { type: String },
+    last_name: { type: String },
+    email: { type: String, unique: true },
+    age: { type: Number },
+    password: { type: String },
+    cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' },
+    role: { type: String, enum: ["user", "premium"], default: "user" }  // Aquí agregamos el nuevo rol
 });
 
 // Middleware para ejecutar después de guardar un usuario
@@ -47,4 +30,5 @@ userSchema.post('save', async function (doc, next) {
 const User = mongoose.model("User", userSchema);
 
 export default User;
+
 

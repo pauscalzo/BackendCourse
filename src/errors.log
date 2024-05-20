@@ -3,3 +3,34 @@
 {"level":"error","message":"Fallo en el registro!, GET en /failregister - 4/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products - 20/5/2024"}
+{"level":"error","message":"Error recibido: Error: req#logout requires a callback function, GET en /logout - 20/5/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /logout - 20/5/2024"}
+{"level":"error","message":"Error no contemplado: Error: req#logout requires a callback function, GET en /logout - 20/5/2024"}
+{"level":"error","message":"Error: self-signed certificate in certificate chain, POST en /recover-password - 20/5/2024"}
+{"level":"error","message":"Error: self-signed certificate in certificate chain, POST en /recover-password - 20/5/2024"}
+{"level":"error","message":"TypeError: this.usersService.updateUser is not a function, POST en /reset-password - 20/5/2024"}
+{"level":"error","message":"TypeError: this.usersService.updateUser is not a function, POST en /reset-password - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products - 20/5/2024"}
+{"level":"fatal","message":"Algo se rompió!, GET en / - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da509b021e02b4379617c4 - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da509b021e02b4379617c4 - 20/5/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da5084021e02b43795fde4 - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}

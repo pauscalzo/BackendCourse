@@ -10,14 +10,9 @@ const productSchema = new mongoose.Schema({
     thumbnail: { type: String, required: true }, 
     code: { type: Number, required: [true, "código único de producto"], unique: true }, 
     stock: { type: Number, required: true }, 
-    category: {
-        type: String,
-        enum: ["Barbie", "Playmobil", "Lego", "Play-Doh"]
-    },
-    status: {
-        type: String,
-        enum: ["Disponible", "No-Disponible"]
-    },
+    category: { type: String, enum: ["Barbie", "Playmobil", "Lego", "Play-Doh"] },
+    status: { type: String, enum: ["Disponible", "No-Disponible"] },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }  // Aquí agregamos el campo owner
 });
 
 productSchema.plugin(mongoosePaginate);
@@ -25,3 +20,4 @@ productSchema.plugin(mongoosePaginate);
 const productModel = mongoose.model(productCollection, productSchema);
 
 export default productModel;
+

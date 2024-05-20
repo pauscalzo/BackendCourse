@@ -41,5 +41,17 @@ export class UserRepository {
         }
     }
 
+    async updateOne(id, update) {
+        try {
+            const updatedUser = await this.model.findByIdAndUpdate(id, update, { new: true });
+            return updatedUser;
+        } catch (error) {
+            console.error(
+                "Error al actualizar un usuario:", error
+            )
+            throw error;
+        }
+    }
 }
+
 

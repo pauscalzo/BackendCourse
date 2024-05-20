@@ -2,6 +2,8 @@ import { ProductManagerMongo } from '../dao/services/managers/ProductManagerMong
 import CustomError from '../services/errors/CustomError.js';
 import EError from '../services/errors/enums.js';
 import { generateErrorInfo } from '../services/errors/info-products.js';
+import productModel from '../dao/models/product.model.js';
+
 
 export class ProductController {
     constructor(){
@@ -59,6 +61,7 @@ export class ProductController {
     addProduct = async (req, res, next) => {
         try {
             let { title, description, price, thumbnail, code, stock, category, status } = req.body;
+            const owner = req.user._id;
             req.logger.debug(
                 `Datos recibidos para agregar el producto: ${req.body}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
             )
@@ -72,7 +75,7 @@ export class ProductController {
                 );
                 return next(err);
             }
-            let result = await this.productsService.addProduct({ title, description, price, thumbnail, code, stock, category, status });
+            let result = await this.productsService.addProduct({ title, description, price, thumbnail, code, stock, category, status, owner });
             req.logger.info(
                 `Producto agregado con éxito: ${result}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
             )
@@ -102,10 +105,29 @@ export class ProductController {
         }
     }
     
-    deleteProduct = async (req, res) => {
-        let { pid } = req.params;
-        let result = await this.productsService.deleteProduct(pid);
-        res.send({ result: "success", payload: result });
-    }   
+    async deleteProduct(req, res) {
+        try {
+            const pid = req.params.pid;
+            const userId = req.user._id;
+            const userRole = req.user.role;
+
+            const product = await productModel.findById(pid);
+            if (!product) {
+                return res.status(404).send({ error: 'Producto no encontrado' });
+            }
+
+            console.log(`Product Owner: ${product.owner}`);
+
+            if (userRole === 'admin' || (userRole === 'premium' && product.owner.equals(userId))) {
+                await productModel.findByIdAndDelete(pid);
+                return res.status(200).send({ result: 'success', message: 'Producto eliminado' });
+            } else {
+                return res.status(403).send({ error: 'No tiene permiso para eliminar este producto' });
+            }
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            res.status(500).send({ error: 'Error al eliminar el producto' });
+        }
+    }
 }
 

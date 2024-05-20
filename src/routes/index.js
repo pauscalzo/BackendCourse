@@ -13,4 +13,4 @@ router.use('/carts', cartRouter);
 router.use('/api/chat', chatRouter);
 router.use('/api/mockingproducts', MockRouter);
 
-export default router
+export default router;
