@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
     stock: { type: Number, required: true }, 
     category: { type: String, enum: ["Barbie", "Playmobil", "Lego", "Play-Doh"] },
     status: { type: String, enum: ["Disponible", "No-Disponible"] },
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }  // Aquí agregamos el campo owner
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } 
 });
 
 productSchema.plugin(mongoosePaginate);

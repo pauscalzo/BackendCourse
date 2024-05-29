@@ -34,3 +34,5 @@
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 20/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, POST en /products/ - 29/5/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /products/ - 29/5/2024"}

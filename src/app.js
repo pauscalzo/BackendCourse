@@ -17,6 +17,8 @@ import { Server } from 'socket.io';
 import { chatMM } from './routes/chat.router.js';
 import errorHandler from './middlewares/errors/index.js';
 import { addLogger } from './utils/logger.js';
+import { swaggerSpecs } from './config/docConfig.js';
+import swaggerUi from 'swagger-ui-express';
 
 dotenv.config();
 
@@ -43,6 +45,9 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 
 const mongooseUrl = process.env.MONGOOSE_URL;
+
+// Middleware de sesión con Passport
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs))
 
 // Middleware de sesión con Passport
 app.use(session({
@@ -105,6 +110,7 @@ app.use((err, req, res, next) => {
 const httpServer = app.listen(PORT, () => {
     console.log (`Server is running on port ${PORT}`)
 })
+
 
 // Socket.io
 const io = new Server(httpServer);
