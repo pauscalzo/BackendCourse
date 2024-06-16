@@ -1,10 +1,11 @@
 import express from 'express';
 import { ProductController } from '../controllers/products.controller.js';
 import utils from '../utils.js';
+import upload from '../../src/config/upload.js'; 
 
 const { passportCall } = utils;
 
-const ProductsRouter = express.Router()
+const ProductsRouter = express.Router();
 
 const {
     getHome,
@@ -23,11 +24,11 @@ ProductsRouter.get("/login", getLogin);
 
 ProductsRouter.get("/signup", getSignup);
 
-ProductsRouter.get('/products',  passportCall('login', 'user'), getProducts);
+ProductsRouter.get('/products', getProducts);
 
 ProductsRouter.get('/:pid', getProductById);
 
-ProductsRouter.post("/products",addProduct);
+ProductsRouter.post("/products", upload.single('thumbnail'), addProduct);
 
 ProductsRouter.put("/:pid", updateProduct);
 

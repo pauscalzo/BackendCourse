@@ -1,5 +1,6 @@
 <h1>Lista Productos</h1>
 <button id="goToCartButton">Ir al Carrito</button>
+<button id="signOutButton">Cerrar sesión</button>
 
 <table>
     <tr>
@@ -24,7 +25,7 @@
             <td>{{status}}</td>
             <td>{{stock}}</td>
             <td>{{category}}</td>
-            <td>{{thumbnail}}</td>
+            <td><img src="{{thumbnail}}" alt="{{title}}" style="max-width: 100px; max-height: 100px;"></td>
             <td>
                 <button class="addToCartButton" data-productid="{{_id}}">Agregar al Carrito</button> 
             </td>
@@ -76,6 +77,7 @@ document.querySelectorAll('.addToCartButton').forEach(button => {
     });
 });
 </script>
+
 <script>
     // Capturar el evento de clic del botón "Ir al carrito"
     document.getElementById('goToCartButton').addEventListener('click', () => {
@@ -86,4 +88,33 @@ document.querySelectorAll('.addToCartButton').forEach(button => {
         window.location.href = `/carts/${cartId}`;
     });
 </script>
+
+<script>
+    // Capturar el evento de clic del botón "Cerrar sesión"
+    document.getElementById('signOutButton').addEventListener('click', () => {
+        // Realizar la solicitud GET al endpoint de sign out
+        fetch('/api/sessions/signout', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirigir al usuario a la página de login
+                window.location.href = '/login';
+            } else {
+                // Manejar el error en la solicitud de cierre de sesión
+                alert("Error al cerrar sesión");
+            }
+        })
+        .catch(error => {
+            // Error en la solicitud
+            console.error("Error al cerrar sesión:", error);
+            alert("Error interno del servidor");
+        });
+    });
+</script>
+
+
 

@@ -25,7 +25,23 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
-    }
+    },
+    last_connection: {
+        type: Date,
+        default: null
+    },
+    documents: [  
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            reference: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 });
 
 // Middleware para ejecutar después de guardar un usuario
@@ -47,4 +63,5 @@ userSchema.post('save', async function (doc, next) {
 const User = mongoose.model("User", userSchema);
 
 export default User;
+
 

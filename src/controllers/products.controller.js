@@ -27,7 +27,6 @@ export class ProductController {
             const category = req.query.category ? req.query.category : null;
             const status = req.query.status ? req.query.status : null;
     
-            // Verificar si el usuario está autenticado y obtener su ID de carrito
             let cartId = null;
             if (req.isAuthenticated()) {
                 const user = req.user;
@@ -43,10 +42,7 @@ export class ProductController {
             res.render('products', { user: req.user, products: result.docs, cartId, ...result });
     
         } catch (error) {
-            req.logger.error(
-                `error al obtener los productos: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-            )
-            
+            req.logger.error(`error al obtener los productos: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
         }
     }    
     
@@ -58,30 +54,47 @@ export class ProductController {
     
     addProduct = async (req, res, next) => {
         try {
-            let { title, description, price, thumbnail, code, stock, category, status } = req.body;
+            const { title, description, price, code, stock, category, status } = req.body;
+            const thumbnail = req.file ? `/uploads/${req.file.filename}` : null; // Obtener la ruta del archivo subido
+
             req.logger.debug(
-                `Datos recibidos para agregar el producto: ${req.body}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-            )
-            
+                `Datos recibidos para agregar el producto: ${JSON.stringify({ title, description, price, thumbnail, code, stock, category, status })}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
+            );
+
+            console.log(`Ruta de la imagen subida: ${thumbnail}`);
+
             if (!title || !description || !price || !thumbnail || !code || !stock || !category || !status) {
                 const err = new CustomError(
-                    "error creando el producto",
+                    "Error creando el producto",
                     generateErrorInfo({ title, description, price, thumbnail, code, stock, category, status }),
-                    "error al intentar crear el producto",
+                    "Error al intentar crear el producto",
                     EError.INVALID_TYPES_ERROR
                 );
                 return next(err);
             }
-            let result = await this.productsService.addProduct({ title, description, price, thumbnail, code, stock, category, status });
+
+            const newProduct = {
+                title,
+                description,
+                price,
+                thumbnail,
+                code,
+                stock,
+                category,
+                status
+            };
+
+            let result = await this.productsService.addProduct(newProduct);
+
             req.logger.info(
-                `Producto agregado con éxito: ${result}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-            )
-            
+                `Producto agregado con éxito: ${JSON.stringify(result)}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
+            );
+
             res.send({ result: "success", payload: result });
         } catch (error) {
             req.logger.error(
                 `Error al agregar el producto: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-            )
+            );
             res.status(500).send({ error: "Error interno del servidor" });
         }
     }
@@ -94,10 +107,7 @@ export class ProductController {
             let result = await this.productsService.updateProduct(pid, updatedProduct);
             res.send({ result: "success", payload: result });
         } catch (error) {
-            req.logger.error(
-                `Error al actualizar el producto: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-            )
-            
+            req.logger.error(`Error al actualizar el producto: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
             res.status(500).send({ error: error.message });
         }
     }
@@ -108,4 +118,5 @@ export class ProductController {
         res.send({ result: "success", payload: result });
     }   
 }
+
 

@@ -17,42 +17,47 @@ import { Server } from 'socket.io';
 import { chatMM } from './routes/chat.router.js';
 import errorHandler from './middlewares/errors/index.js';
 import { addLogger } from './utils/logger.js';
+import { swaggerSpecs } from './config/docConfig.js';
+import swaggerUi from 'swagger-ui-express';
 
 dotenv.config();
 
 const { passportCall } = utils;
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 8080
+const PORT = 8080;
 
 // Middleware para Loggers
-app.use(addLogger)
+app.use(addLogger);
 
-//Handlebars
-app.engine("handlebars", handlebars.engine())
-app.set("views", __dirname + '/views') 
-app.set('view engine', "handlebars")
-app.use(express.static(__dirname + '/views'))
-app.use(express.static(path.join(__dirname, "public")))
+// Handlebars
+app.engine("handlebars", handlebars.engine());
+app.set("views", path.join(__dirname, '/views'));
+app.set('view engine', "handlebars");
+app.use(express.static(path.join(__dirname, '/views')));
+app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Middleware para manejar solicitudes JSON
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((err, req, res, next) => {
     req.logger.fatal(
         `Algo se rompió!, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-    )
+    );
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
 
-
 const mongooseUrl = process.env.MONGOOSE_URL;
+
+// Middleware de sesión con Passport
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Middleware de sesión con Passport
 app.use(session({
@@ -70,13 +75,11 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Endpoint para cerrar sesión
 app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/login");
 });
-
 
 // Rutas de autenticación
 app.get('/current', passportCall('login', 'admin'), (req, res) => {
@@ -90,39 +93,37 @@ app.get('/current', passportCall('login', 'admin'), (req, res) => {
     }
 });
 
-
 // Manejo de errores para rutas de inicio de sesión fallidas
 app.get("/failregister", (req, res) => {
     req.logger.error(
         `Fallo en el registro!, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-    )
-    res.status(400).send({ error: "Fallo en el registro" })
+    );
+    res.status(400).send({ error: "Fallo en el registro" });
 });
 
 app.get("/faillogin", (req, res) => {
     req.logger.error(
         `Login fallido!, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`
-    )
-    res.status(400).send({ error: "Fallo en el login" })
+    );
+    res.status(400).send({ error: "Fallo en el login" });
 });
 
 app.use(router);
 
 const httpServer = app.listen(PORT, () => {
-    console.log (`Server is running on port ${PORT}`)
-})
+    console.log (`Server is running on port ${PORT}`);
+});
 
-//socket.io
+// socket.io
 const io = new Server(httpServer);
 
-const users = {}
+const users = {};
 
-io.on("connection", (socket)=>{
-    
-    socket.on("newUser", (username)=>{
-        users[socket.id] = username
-        io.emit("userConnected", username)
-    })
+io.on("connection", (socket) => {
+    socket.on("newUser", (username) => {
+        users[socket.id] = username;
+        io.emit("userConnected", username);
+    });
 
     socket.on("chatMessage", async (data) => {
         const { username, message } = data;
@@ -132,29 +133,30 @@ io.on("connection", (socket)=>{
         } catch (error) {
             console.error(
                 "Error al procesar el mensaje del chat!", error
-            )
+            );
         }
     });
 
-    socket.on("disconnect", ()=>{
-        const username = users[socket.id]
-        delete users[socket.id]
-        io.emit("userDisconnected", username)
-    })
-})
+    socket.on("disconnect", () => {
+        const username = users[socket.id];
+        delete users[socket.id];
+        io.emit("userDisconnected", username);
+    });
+});
 
 const environment = async () => {
     await mongoose.connect(mongooseUrl)
-        .then (() => {
-            console.log("Conectado a la base de datos")
+        .then(() => {
+            console.log("Conectado a la base de datos");
         })
-        .catch (error => {
-            console.error("error al conectarse", error)
-        })
-}
+        .catch(error => {
+            console.error("error al conectarse", error);
+        });
+};
 
 app.use(errorHandler);
 
-environment ();
+environment();
+
 
 

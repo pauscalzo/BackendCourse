@@ -3,3 +3,18 @@
 {"level":"error","message":"Fallo en el registro!, GET en /failregister - 4/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
 {"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/5/2024"}
+{"level":"error","message":"TypeError: this.usersService.updateUser is not a function, POST en /reset-password - 13/6/2024"}
+{"level":"error","message":"TypeError: this.usersService.updateUser is not a function, POST en /reset-password - 13/6/2024"}
+{"level":"error","message":"TypeError: this.usersService.updateUser is not a function, POST en /reset-password - 13/6/2024"}
+{"level":"error","message":"TypeError: this.repository.updateOne is not a function, POST en /reset-password - 13/6/2024"}
+{"level":"error","message":"Error recibido: error creando el producto: error al intentar crear el producto, POST en /products - 13/6/2024"}
+{"level":"error","message":"Causa del error: Una o más propiedades estaban incompletas o inválidas. Lista de propiedades requeridas:\n    *title: necesita un string, se recibió undefined\n    *description: necesita un string, se recibió undefined\n    *price: necesita un number, se recibió undefined\n    *imagen: necesita un string, se recibió undefined\n    *code: necesita un number, se recibió undefined\n    *stock: necesita un number, se recibió undefined\n    *category: necesita un string, se recibió undefined\n    *status: necesita un string, se recibió undefined\n    , POST en /products - 13/6/2024"}
+{"level":"error","message":"Error de tipeos inválidos. Detalles error creando el producto: error al intentar crear el producto, POST en /products - 13/6/2024"}
+{"level":"error","message":"Error recibido: Error: ENOENT: no such file or directory, open 'C:\\Users\\Paula\\Desktop\\BackEnd\\13-06\\CursoBackend\\src\\uploads\\1718314823974.jpg', POST en /upload - 13/6/2024"}
+{"level":"error","message":"Causa del error: undefined, POST en /upload - 13/6/2024"}
+{"level":"error","message":"Error no contemplado: Error: ENOENT: no such file or directory, open 'C:\\Users\\Paula\\Desktop\\BackEnd\\13-06\\CursoBackend\\src\\uploads\\1718314823974.jpg', POST en /upload - 13/6/2024"}
+{"level":"error","message":"Error recibido: Error: ENOENT: no such file or directory, open 'C:\\Users\\Paula\\Desktop\\BackEnd\\13-06\\CursoBackend\\src\\uploads\\thumbnail-1718315649418-781990907.jpg', POST en /products - 13/6/2024"}
+{"level":"error","message":"Causa del error: undefined, POST en /products - 13/6/2024"}
+{"level":"error","message":"Error no contemplado: Error: ENOENT: no such file or directory, open 'C:\\Users\\Paula\\Desktop\\BackEnd\\13-06\\CursoBackend\\src\\uploads\\thumbnail-1718315649418-781990907.jpg', POST en /products - 13/6/2024"}
+{"level":"error","message":"Error al agregar el producto: TypeError: Cannot convert object to primitive value, POST en /products - 13/6/2024"}
+{"level":"error","message":"Error al agregar el producto: TypeError: Cannot convert object to primitive value, POST en /products - 14/6/2024"}

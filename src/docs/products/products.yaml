@@ -1,0 +1,403 @@
+paths:
+  /products/:
+    get:
+      summary: Obtener todos los productos
+      tags: 
+        - Productos
+      responses: 
+        "200":
+          description: Todos los productos obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: "#components/schemas/Product"
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    post:
+      summary: Agregar un Producto.
+      tags: 
+        - Productos
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/createProduct"
+
+
+  /{pid}:
+    get:
+      summary: Obtener un producto por id
+      tags: 
+        - Productos
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    put:
+      summary: Editar un Producto.
+      tags: 
+        - Productos
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar.
+        schema:
+          $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProduct"
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    delete:
+      summary: Borrar un Producto.
+      tags: 
+        - Productos
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+
+  /carts/{cid}:
+    get:
+      summary: Obtener un carrito por id
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    post:
+      summary: Realizar la compra.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    put:
+      summary: Editar un Carrito.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    delete:
+      summary: Borrar todos los productos del carrito.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+  /carts/{cid}/products/{pid}:
+    put:
+      summary: Editar la cantidad de un producto dentro del carrito.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar.
+        schema:
+          $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateQuantity"
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+    delete:
+      summary: Borrar un producto del carrito.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Productos obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+  /carts/{cid}/{pid}:
+    post:
+      summary: Agregar un producto al carrito.
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      - name: pid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+  /carts/{cid}/purchase:
+    get:
+      summary: Mensaje de compra exitosa
+      tags: 
+        - Cart
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar.
+        schema:
+          $type: String
+      responses: 
+        "200":
+          description: Carrito obtenido correctamente.
+        "403":
+          description: Error por falta de permisos.
+        "500":
+          description: Error interno del servidor.
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: id creado por la base de datos.
+        title: 
+          type: string 
+          description: Nombre del Producto.
+        description:
+          type: string 
+          description: Descripción del Producto.
+        price:
+          type: number 
+          description: Precio del Producto.
+        thumbnail: 
+          type: string 
+          description: Imagen del Producto. 
+        code: 
+          type: number 
+          description: Código del Producto. 
+        stock: 
+          type: number 
+          description: Stock del Producto. 
+        category: 
+          type: string 
+          description: Categoría del Producto.
+        status:
+          type: string 
+          description: Estado del Producto.
+        owner: 
+          type: mongoose.Schema.Types.ObjectId
+          description: Creador del Producto.
+      example:
+        _id: ObjectId("65da506e021e02b43795e48f")
+        title: LEGO Technic Race Plane 42117
+        description: LEGO Technic Race Plane 42117 Kit de construcción para niños y niñas q…
+        price: 16670
+        stock: 57
+        thumbnail: https://paulascalzo.site/IMG/lego02.jpg
+        code: 112
+        status: Disponible
+        category: Lego
+    Carts:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: id creado por la base de datos.
+        products: 
+          type: Array
+          description: Array de productos.
+          properties:
+            _id: 
+              type: ObjectId
+              description: id creado por la base de datos.
+            productId: 
+              type: mongoose.Schema.Types.ObjectId
+              description: id del producto
+            quantity: 
+              type: number
+              description: cantidad del producto a comprar.
+      example:
+        _id: ObjectId("662687e46bf28b3a9805b81e")
+        products:
+          _id: ObjectId("664b7a94802484bd92e5c6a0")
+          productId: ObjectId("65da50c6021e02b4379649cf")
+          quantity: 1
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title: 
+          type: string 
+          description: Nombre del Producto.
+        description:
+          type: string 
+          description: Descripción del Producto.
+        price:
+          type: number 
+          description: Precio del Producto.
+        thumbnail: 
+          type: string 
+          description: Imagen del Producto. 
+        code: 
+          type: number 
+          description: Código del Producto. 
+        stock: 
+          type: number 
+          description: Stock del Producto. 
+        category: 
+          type: string 
+          description: Categoría del Producto.
+        status:
+          type: string 
+          description: Estado del Producto.
+    createProduct:
+      type: object
+      properties:
+        title: 
+          type: string 
+          description: Nombre del Producto.
+        description:
+          type: string 
+          description: Descripción del Producto.
+        price:
+          type: number 
+          description: Precio del Producto.
+        thumbnail: 
+          type: string 
+          description: Imagen del Producto. 
+        code: 
+          type: number 
+          description: Código del Producto. 
+        stock: 
+          type: number 
+          description: Stock del Producto. 
+        category: 
+          type: string 
+          description: Categoría del Producto.
+        status:
+          type: string 
+          description: Estado del Producto.
+    updateQuantity:
+      properties:
+        quantity: 
+          type: number
+          description: cantidad del producto
