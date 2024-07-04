@@ -59,6 +59,7 @@ const mongooseUrl = process.env.MONGOOSE_URL;
 // Middleware de sesión con Passport
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
+
 // Middleware de sesión con Passport
 app.use(session({
     store: MongoStore.create({
@@ -75,6 +76,7 @@ initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // Endpoint para cerrar sesión
 app.get("/logout", (req, res) => {
     req.logout();
@@ -82,7 +84,7 @@ app.get("/logout", (req, res) => {
 });
 
 // Rutas de autenticación
-app.get('/current', passportCall('login', 'admin'), (req, res) => {
+app.get('/current', passportCall('login', ['premium', 'admin']), (req, res) => {
     if (req.isAuthenticated()) {
         // Crear una instancia de UserDTO con req.user y luego pasarla a la vista
         const userDTO = new UserDTO(req.user);
@@ -92,6 +94,7 @@ app.get('/current', passportCall('login', 'admin'), (req, res) => {
         res.redirect('/login');
     }
 });
+
 
 // Manejo de errores para rutas de inicio de sesión fallidas
 app.get("/failregister", (req, res) => {

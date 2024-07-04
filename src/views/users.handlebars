@@ -1,0 +1,104 @@
+<h1>Users List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Cart</th>
+            <th>ID</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+            <tr>
+                <td>{{this.first_name}} {{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.cart}}</td>
+                <td>{{this._id}}</td>
+                <td>
+                    <select id="role-select-{{this._id}}" name="role">
+                        <option value="user" {{this.isUserRole}}>User</option>
+                        <option value="admin" {{this.isAdminRole}}>Admin</option>
+                    </select>
+                </td>
+                <td>
+                    <button onclick="deleteUser('{{this._id}}')">Delete</button>
+                    <button onclick="updateUserRole('{{this._id}}')">Update Role</button>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<button onclick="deleteInactiveUsers()">Delete Inactive Users</button>
+
+<script>
+    async function deleteUser(userId) {
+    try {
+        const response = await fetch(`/api/sessions/${userId}`, {
+            method: 'DELETE'
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+            alert('Usuario eliminado');
+            location.reload();
+        } else {
+            alert('Error al eliminar el usuario: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error en el servidor');
+    }
+}
+
+async function updateUserRole(userId) {
+    const roleSelect = document.getElementById(`role-select-${userId}`);
+    const role = roleSelect.value;
+
+    try {
+        const response = await fetch(`/api/sessions/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ role })
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+            alert('Rol actualizado');
+            location.reload();
+        } else {
+            alert('Error al actualizar el rol: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error en el servidor');
+    }
+}
+
+async function deleteInactiveUsers() {
+    try {
+        const response = await fetch('/api/sessions/users/inactive', {
+            method: 'DELETE'
+        });
+
+        const result = await response.json();
+        if (result.status === 'success') {
+            alert('Usuarios inactivos eliminados');
+            location.reload();
+        } else {
+            alert('Error al eliminar usuarios inactivos: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error en el servidor');
+    }
+}
+
+</script>
+
+

@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ["Disponible", "No-Disponible"]
     },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 productSchema.plugin(mongoosePaginate);

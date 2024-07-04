@@ -46,6 +46,7 @@ export class ProductRepository {
     }
     
     async deleteProduct(pid){
-        return await this.model.findByIdAndDelete(pid);
+        return await this.model.findByIdAndDelete(pid).populate('owner');
     }
+
 }

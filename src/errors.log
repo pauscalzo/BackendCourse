@@ -205,3 +205,70 @@
 {"level":"error","message":"Error recibido: Error creando el producto: Error al intentar crear el producto, POST en /products - 2/7/2024"}
 {"level":"error","message":"Causa del error: Una o más propiedades estaban incompletas o inválidas. Lista de propiedades requeridas:\n    *title: necesita un string, se recibió undefined\n    *description: necesita un string, se recibió test\n    *price: necesita un number, se recibió 10\n    *imagen: necesita un string, se recibió null\n    *code: necesita un number, se recibió 765564\n    *stock: necesita un number, se recibió 10\n    *category: necesita un string, se recibió Lego\n    *status: necesita un string, se recibió Disponible\n    , POST en /products - 2/7/2024"}
 {"level":"error","message":"Error de tipeos inválidos. Detalles Error creando el producto: Error al intentar crear el producto, POST en /products - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/ - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions/ - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/ - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/users - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions/users - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/users - 2/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 2/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/users - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions/users - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Unknown authentication strategy \"jwt\", GET en /api/sessions/users - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /current - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /current - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /current - 2/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Missing helper: \"eq\", GET en /current - 2/7/2024"}
+{"level":"error","message":"Error recibido: Error: Missing helper: \"eq\", GET en /api/sessions/users - 3/7/2024"}
+{"level":"error","message":"Causa del error: undefined, GET en /api/sessions/users - 3/7/2024"}
+{"level":"error","message":"Error no contemplado: Error: Missing helper: \"eq\", GET en /api/sessions/users - 3/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, PUT en /users/ - 3/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, DELETE en /users/ - 3/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, PUT en /users/ - 3/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, DELETE en /users/ - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", PUT en /users/ - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users/ - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", PUT en /users/ - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users/ - 3/7/2024"}
+{"level":"error","message":"ReferenceError: ObjectId is not defined, PUT en /users/ - 3/7/2024"}
+{"level":"error","message":"ReferenceError: ObjectId is not defined, DELETE en /users/ - 3/7/2024"}
+{"level":"error","message":"ReferenceError: ObjectId is not defined, POST en /login - 3/7/2024"}
+{"level":"error","message":"ReferenceError: ObjectId is not defined, POST en /login - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users - 3/7/2024"}
+{"level":"error","message":"CastError: Cast to ObjectId failed for value \"users\" (type string) at path \"_id\" for model \"User\", DELETE en /users - 3/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, POST en /products - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, POST en /products - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, POST en /products - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, POST en /products - 4/7/2024"}
+{"level":"error","message":"Error al agregar el producto: ValidationError: owner: Path `owner` is required., POST en /products - 4/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: MissingSchemaError: Schema hasn't been registered for model \"users\".\nUse mongoose.model(name, schema), DELETE en /6686aef64cb7dae3eb1cd386 - 4/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 4/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: MissingSchemaError: Schema hasn't been registered for model \"users\".\nUse mongoose.model(name, schema), DELETE en /6686b1c929bbc1917589d8b0 - 4/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: ReferenceError: MailingService is not defined, DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: TypeError: Cannot read properties of null (reading 'owner'), DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: TypeError: Cannot read properties of null (reading 'owner'), DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}

@@ -2,6 +2,7 @@ import { ProductManagerMongo } from '../dao/services/managers/ProductManagerMong
 import CustomError from '../services/errors/CustomError.js';
 import EError from '../services/errors/enums.js';
 import { generateErrorInfo } from '../services/errors/info-products.js';
+import MailingService from "../services/mailing.js";
 
 export class ProductController {
     constructor(){
@@ -85,7 +86,8 @@ export class ProductController {
                 code: Number(code),
                 stock: Number(stock),
                 category,
-                status
+                status,
+                owner: req.user._id
             };
     
             let result = await this.productsService.addProduct(newProduct);
@@ -124,10 +126,33 @@ export class ProductController {
     
     
     deleteProduct = async (req, res) => {
-        let { pid } = req.params;
-        let result = await this.productsService.deleteProduct(pid);
-        res.send({ result: "success", payload: result });
-    }   
+        try {
+            let { pid } = req.params;
+            let result = await this.productsService.deleteProduct(pid);
+
+            console.log('Pid:', pid);
+            console.log('Producto eliminado:', result);
+            console.log('role:', result.owner.role);
+            console.log('email:', result.owner.email);
+            console.log('id:', result.owner._id);
+
+            if (result.owner.role === 'premium') {
+                const mailer = new MailingService();
+                await mailer.sendSimpleMail({
+                    from: "your-email@example.com",
+                    to: result.owner.email,
+                    subject: "Notificación de Producto Eliminado",
+                    html: `<p>Hola ${result.owner.first_name},</p>
+                        <p>Tu producto <strong>${result.title}</strong> ha sido eliminado.</p>`,
+                });
+            }
+
+            res.send({ result: "success", payload: result });
+        } catch (error) {
+            req.logger.error(`Error al eliminar el producto: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
+            res.status(500).send({ error: error.message });
+        }
+    }
 }
 
 

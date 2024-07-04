@@ -28,10 +28,13 @@ ProductsRouter.get('/products', getProducts);
 
 ProductsRouter.get('/:pid', getProductById);
 
-ProductsRouter.post("/products", upload.single('thumbnail'), addProduct);
+// Protegemos las rutas POST, PUT y DELETE con los roles "premium" y "admin"
 
-ProductsRouter.put("/:pid", updateProduct);
+ProductsRouter.post("/products", upload.single('thumbnail'), passportCall('login', ['premium', 'admin']), addProduct);
 
-ProductsRouter.delete("/:pid", deleteProduct);
+ProductsRouter.put("/:pid", passportCall('login', ['premium', 'admin']), updateProduct);
+
+ProductsRouter.delete("/:pid", passportCall('login', ['premium', 'admin']), deleteProduct);
+
 
 export default ProductsRouter;

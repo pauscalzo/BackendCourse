@@ -52,5 +52,29 @@ export class UserRepository {
             throw error;
         }
     }
+
+    async findAll() {
+        try {
+            const users = await this.model.find();
+            return users;
+        } catch (error) {
+            console.error("Error al obtener todos los usuarios:", error);
+            throw error;
+        }
+    }
+
+    async deleteOne(id) {
+        try {
+            const deletedUser = await this.model.findByIdAndDelete(id);
+            return deletedUser;
+        } catch (error) {
+            console.error("Error al eliminar un usuario:", error);
+            throw error;
+        }
+    }
+
+    async find(criteria) {
+        return await this.model.find(criteria);
+    }
 }
 

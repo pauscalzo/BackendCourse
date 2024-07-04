@@ -189,4 +189,90 @@ export class UserController {
             res.status(500).send({ status: 'error', message: 'Error en el servidor' });
         }
     }
+    getUsers = async (req, res) => {
+        try {
+            const users = await this.usersService.findAll();
+            const usersDTO = users.map(user => new UserDTO(user));
+            
+            // Preprocesar datos para la selección
+            usersDTO.forEach(user => {
+                user.isUserRole = user.role === 'user' ? 'selected' : '';
+                user.isAdminRole = user.role === 'admin' ? 'selected' : '';
+            });
+    
+            res.render('users', { users: usersDTO });
+        } catch (error) {
+            req.logger.error(`${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
+            res.status(500).send({ status: 'error', message: 'Error en el servidor', error: error.message });
+        }
+    }
+    
+
+    editUserRole = async (req, res) => {
+        const { id } = req.params;
+        const { role } = req.body;
+        console.log(`ID recibido: ${id}, Rol: ${role}`);
+        try {
+            const updatedUser = await this.usersService.updateUser(id, { role });
+            if (!updatedUser) {
+                return res.status(404).send({ status: 'error', message: 'Usuario no encontrado' });
+            }
+            res.send({ status: 'success', message: 'Rol actualizado', user: new UserDTO(updatedUser) });
+        } catch (error) {
+            req.logger.error(`${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
+            res.status(500).send({ status: 'error', message: 'Error en el servidor' });
+        }
+    }
+    
+    deleteUser = async (req, res) => {
+        const { id } = req.params;
+        try {
+            const deletedUser = await this.usersService.deleteUser(id);
+            if (!deletedUser) {
+                return res.status(404).send({ status: 'error', message: 'Usuario no encontrado' });
+            }
+            res.send({ status: 'success', message: 'Usuario eliminado' });
+        } catch (error) {
+            req.logger.error(`${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
+            res.status(500).send({ status: 'error', message: 'Error en el servidor' });
+        }
+    } 
+
+    deleteInactiveUsers = async (req, res) => {
+        const TWO_DAYS_IN_MS = 2 * 24 * 60 * 60 * 1000; // 2 días en milisegundos
+        try {
+            const inactiveThreshold = new Date(Date.now() - TWO_DAYS_IN_MS);
+
+            // Buscar usuarios que no han iniciado sesión desde hace más de 2 días
+            const inactiveUsers = await this.usersService.find({
+                last_connection: { $lt: inactiveThreshold },
+            });
+
+            if (inactiveUsers.length === 0) {
+                return res.send({ status: 'error', message: 'No hay usuarios inactivos para eliminar.' });
+            }
+
+            // Eliminar usuarios inactivos
+            for (let user of inactiveUsers) {
+                await this.usersService.deleteUser(user._id);
+
+                // Enviar correo de notificación
+                const mailer = new MailingService();
+                await mailer.sendSimpleMail({
+                    from: "your-email@example.com",
+                    to: user.email,
+                    subject: "Notificación de Baja por Inactividad",
+                    html: `<p>Hola ${user.first_name},</p>
+                        <p>Tu cuenta ha sido eliminada debido a inactividad.</p>`,
+                });
+
+                console.log(`Usuario ${user.email} eliminado y notificación enviada.`);
+            }
+
+            res.send({ status: 'success', message: 'Usuarios inactivos eliminados y notificados.' });
+        } catch (error) {
+            console.error('Error al eliminar usuarios inactivos:', error);
+            res.status(500).send({ status: 'error', message: 'Error en el servidor' });
+        }
+    }
 }
