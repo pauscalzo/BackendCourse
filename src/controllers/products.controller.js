@@ -28,7 +28,7 @@ export class ProductController {
             const category = req.query.category ? req.query.category : null;
             const status = req.query.status ? req.query.status : null;
     
-            let cartId = null;
+            let cartId = 'null';
             if (req.isAuthenticated()) {
                 const user = req.user;
                 cartId = user.cart ? user.cart : null;
@@ -40,12 +40,12 @@ export class ProductController {
             result.nextLink = result.hasNextPage ? `/products?page=${result.nextPage}` : '';
             result.isValid = !(page <= 0 || page > result.totalPages);
     
-            res.render('products', { user: req.user, products: result.docs, cartId, ...result });
+            res.render('products', { user: req.user || {}, products: result.docs, cartId, ...result });
     
         } catch (error) {
             req.logger.error(`error al obtener los productos: ${error}, ${req.method} en ${req.url} - ${new Date().toLocaleDateString()}`);
         }
-    }    
+    }
     
     getProductById = async (req, res) => {
         let { pid } = req.params;

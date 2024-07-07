@@ -169,6 +169,9 @@ export class CartRepository {
     
             // Obtener el carrito por su ID
             const cart = await this.getCartById(cartId);
+            console.log(cart)
+            console.log(cartId)
+            console.log(cart._id)
     
             // Obtener el usuario asociado al carrito
             const user = await User.findOne({ cart: cart._id });

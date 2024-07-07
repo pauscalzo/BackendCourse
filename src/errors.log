@@ -272,3 +272,39 @@
 {"level":"error","message":"Error al eliminar el producto: ReferenceError: MailingService is not defined, DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}
 {"level":"error","message":"Error al eliminar el producto: TypeError: Cannot read properties of null (reading 'owner'), DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}
 {"level":"error","message":"Error al eliminar el producto: TypeError: Cannot read properties of null (reading 'owner'), DELETE en /6686b59525db787ba3a81e26 - 4/7/2024"}
+{"level":"error","message":"Fallo en el registro!, GET en /failregister - 5/7/2024"}
+{"level":"fatal","message":"Usuario existente!, POST en /signup - 5/7/2024"}
+{"level":"error","message":"Fallo en el registro!, GET en /failregister - 5/7/2024"}
+{"level":"error","message":"Login fallido!, GET en /faillogin - 5/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 5/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /current - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da509b021e02b4379617c4 - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 65da506e021e02b43795e48f, POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 65da506e021e02b43795e48f, POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 65da506e021e02b43795e48f, POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 65da506e021e02b43795e48f, POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 65da506e021e02b43795e48f, POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra Error: No se encontró el carrito con id 668879ad6e3087bf60a63335, POST en /668879ad6e3087bf60a63335 - 5/7/2024"}
+{"level":"error","message":"Error al eliminar el producto: StrictPopulateError: Cannot populate path `owner` because it is not in your schema. Set the `strictPopulate` option to false to override., DELETE en /66887aa66e3087bf60a63340 - 5/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 5/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /6688847b8fe53d86a075c081 - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /6688847b8fe53d86a075c081 - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /6688847b8fe53d86a075c081 - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 5/7/2024"}
+{"level":"error","message":"error al obtener el carrito TypeError: Cannot read properties of null (reading 'products'), GET en /668ad53751bbded8378c4278 - 7/7/2024"}
+{"level":"error","message":"error al obtener el carrito TypeError: Cannot read properties of null (reading 'products'), GET en /66362aeb7ee02d3415d1a72f - 7/7/2024"}
+{"level":"error","message":"error al agregar producto al carrito Error: No se encontró el carrito con id 66362aeb7ee02d3415d1a72f, POST en /66362aeb7ee02d3415d1a72f/65da506e021e02b43795e48f - 7/7/2024"}
+{"level":"error","message":"error al agregar producto al carrito Error: No se encontró el carrito con id 66362aeb7ee02d3415d1a72f, POST en /66362aeb7ee02d3415d1a72f/65da506e021e02b43795e48f - 7/7/2024"}
+{"level":"error","message":"error al agregar producto al carrito Error: No se encontró el carrito con id 668ad53751bbded8378c4278, POST en /668ad53751bbded8378c4278/65da506e021e02b43795e48f - 7/7/2024"}
+{"level":"error","message":"error al obtener los productos: TypeError: Cannot read properties of undefined (reading 'cart'), GET en /products - 7/7/2024"}
+{"level":"error","message":"error al obtener los productos: TypeError: Cannot read properties of undefined (reading 'cart'), GET en /products - 7/7/2024"}
+{"level":"error","message":"error al procesar la compra TypeError: Cannot read properties of null (reading '_id'), POST en /65da506e021e02b43795e48f - 7/7/2024"}
+{"level":"error","message":"Error al agregar el producto: TypeError: Cannot convert object to primitive value, POST en /products - 7/7/2024"}
+{"level":"warning","message":"Acceso denegado. Rol de usuario incorrecto, GET en /users - 7/7/2024"}
+{"level":"fatal","message":"Usuario existente!, POST en /signup - 7/7/2024"}
+{"level":"error","message":"Fallo en el registro!, GET en /failregister - 7/7/2024"}

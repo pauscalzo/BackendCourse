@@ -24,7 +24,7 @@ ProductsRouter.get("/login", getLogin);
 
 ProductsRouter.get("/signup", getSignup);
 
-ProductsRouter.get('/products', getProducts);
+ProductsRouter.get('/products',  passportCall('login', ['premium', 'user']), getProducts);
 
 ProductsRouter.get('/:pid', getProductById);
 
